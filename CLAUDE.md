@@ -122,18 +122,21 @@ the plan is a **small, reusable, hand-picked image library**:
 
 ## Status
 
-This is all design-stage — no code has been written yet for the actual site.
-A working proof-of-concept widget was built separately (simple date picker +
-live Wikipedia-adjacent event feed, no timeline/zoom/images) just to test the
-basic "pick a date, see events" loop, which functioned but is not part of the
-final architecture described above.
+The project is now fully implemented as a web application prototype:
 
-**Open questions for next steps:**
-- Discrete year-snapping vs. continuous smooth scroll for the timeline (discrete
-  recommended first — much simpler to get feeling right).
-- Final category taxonomy for images (rough first pass: war, birth, death,
-  invention/discovery, political, disaster, exploration, cultural).
-- Where the storage bucket lives (local filesystem for a personal project vs.
-  something like S3-compatible/Supabase storage if it'll be deployed).
-- How deep to go on "most important event" ranking — fully manual vs. some
-  lightweight heuristic assist.
+- **Stack**: Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**.
+- **Aesthetic**: Warm, parchment-themed layout utilizing serif fonts (`Playfair Display`), textured backgrounds, and custom muted category colors.
+- **Engine**: A custom GPU-accelerated `transform`-based translation slider that centers selected dates, responds dynamically to keyboard arrow keys, mouse wheel, click-and-drag, and edge-hover scrolling.
+- **Visuals**: Conversion of the stylized category SVGs into reusable React components (`illustrations.jsx`).
+- **Zoom Flow**: Fully interactive Century → Year → Month → Day drilling with back-track index selection preservation and fade transitions.
+- **Data**: A set of manually curated sample historical events across all zoom levels is stored in `src/data/events.js`.
+- **Refinements**: 
+  - Massive, highly readable typography for the timeline elements (`text-6xl` for selected dates).
+  - A tightened and space-optimized timeline rail layout.
+  - A stacked event panel design ensuring the category illustration is always prominently displayed directly above the event text.
+
+**Next Steps & Iterations:**
+- Integration of actual hand-picked images (using PNG character art format) to complement or replace the placeholder category SVGs.
+- Transitioning the static curated JSON data structure to a database layer (e.g. Supabase, SQLite, or simple JSON api) if server-side persistence is desired.
+- Velocity-based ramping for edge-hover auto-scrolling to feel more tactile.
+- Adding comprehensive multi-touch swipe gesture handling for mobile browsers.

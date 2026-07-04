@@ -1,9 +1,5 @@
-/* ============================================================
-   ON THIS DAY — Curated Sample Event Data
-   Hand-picked events for the draft / prototype
-   ============================================================ */
-
-const CURATED_EVENTS = {
+// Curated events data for the timeline
+export const CURATED_EVENTS = {
   // ── Century-level featured events ──────────────────────────
   centuries: {
     "1st":  { title: "Roman Empire at its Zenith", description: "The Roman Empire dominated the Mediterranean world, establishing systems of law, engineering, and governance that would shape Western civilization for millennia.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Roman_Empire" },
@@ -91,25 +87,22 @@ const CURATED_EVENTS = {
   },
 };
 
-// Month names for display
-const MONTH_NAMES = [
+export const MONTH_NAMES = [
   '', 'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
-const MONTH_ABBR = [
+export const MONTH_ABBR = [
   '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ];
 
-// Ordinal suffix
-function ordinal(n) {
+export function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-// Century label helper
-function centuryLabel(num) {
+export function centuryLabel(num) {
   return ordinal(num);
 }
