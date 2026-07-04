@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
+    "dotenv": "^17.4.2",
+    "pg": "^8.22.0",
+    "pg-hstore": "^2.3.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "sequelize": "^6.37.8",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
@@ -20,6 +24,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
+    "sequelize-cli": "^6.6.5",
     "vite": "^8.1.1"
   }
 }
