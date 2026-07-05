@@ -7,16 +7,16 @@ export default function ContextBox({ level, context, onBack }) {
       case 'century':
         return {
           title: 'All Centuries',
-          subtitle: '1st – 21st century'
+          subtitle: '34th Century BC – 21st Century AD'
         };
       case 'year':
         return {
-          title: `${ordinal(context.century)} Century`,
+          title: context.century < 0 ? `${ordinal(context.century)} Century BC` : `${ordinal(context.century)} Century`,
           subtitle: 'Browse years'
         };
       case 'month':
         return {
-          title: String(context.year),
+          title: context.year < 0 ? `${Math.abs(context.year)} BC` : String(context.year),
           subtitle: 'Browse months'
         };
       case 'day':
@@ -25,7 +25,7 @@ export default function ContextBox({ level, context, onBack }) {
           'July', 'August', 'September', 'October', 'November', 'December'
         ][context.month];
         return {
-          title: `${monthName} ${context.year}`,
+          title: context.year < 0 ? `${monthName} ${Math.abs(context.year)} BC` : `${monthName} ${context.year}`,
           subtitle: 'Browse days'
         };
       default:

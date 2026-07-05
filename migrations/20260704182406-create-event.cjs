@@ -29,8 +29,8 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      wiki_link: {
-        type: Sequelize.STRING,
+      wiki_links: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: true
       },
       image_key: {

@@ -2,6 +2,17 @@
 export const CURATED_EVENTS = {
   // ── Century-level featured events ──────────────────────────
   centuries: {
+    "34th BC": { title: "Dawn of Urbanization & Writing", description: "In Mesopotamia, the city of Uruk grows into a major metropolis. Early administrative record-keeping begins with proto-cuneiform on clay tablets, while Egypt's Naqada II culture develops advanced craft specialization and social stratification.", category: "cultural", wikiLink: "https://en.wikipedia.org/wiki/34th_century_BC" },
+    "10th BC": { title: "Rise of the Kingdom of Israel", description: "The United Monarchy of Israel and Judah reaches its height under David and Solomon, establishing Jerusalem as a political and religious center.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/United_Monarchy" },
+    "9th BC":  { title: "Founding of Carthage", description: "Phoenician settlers led by Queen Dido establish the city-state of Carthage, which would grow into a dominant Mediterranean maritime power.", category: "exploration", wikiLink: "https://en.wikipedia.org/wiki/Carthage" },
+    "8th BC":  { title: "Founding of Rome & Homeric Epic", description: "According to legend, Rome was founded in 753 BC by Romulus. Meanwhile, the Iliad and Odyssey are composed, shaping Greek literature and identity.", category: "cultural", wikiLink: "https://en.wikipedia.org/wiki/Founding_of_Rome" },
+    "7th BC":  { title: "Rise of the Assyrian Empire", description: "The Neo-Assyrian Empire dominates the Near East, constructing the Library of Ashurbanipal, one of the ancient world's first systematic libraries.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Neo-Assyrian_Empire" },
+    "6th BC":  { title: "Birth of Buddhism and Philosophy", description: "Siddhartha Gautama (the Buddha) teaches in India. Cyrus the Great founds the Achaemenid Empire, and democracy emerges in Athens.", category: "cultural", wikiLink: "https://en.wikipedia.org/wiki/6th_century_BC" },
+    "5th BC":  { title: "Golden Age of Athens", description: "A period of Athenian political hegemony, economic growth, and cultural flourishing, laying the foundations of Western philosophy, drama, and democracy.", category: "cultural", wikiLink: "https://en.wikipedia.org/wiki/Golden_Age_of_Athens" },
+    "4th BC":  { title: "Conquests of Alexander the Great", description: "Alexander the Great of Macedon conquered the Persian Empire, spreading Hellenistic culture across the Middle East and into Central Asia.", category: "war", wikiLink: "https://en.wikipedia.org/wiki/Alexander_the_Great" },
+    "3rd BC":  { title: "Qin Dynasty Unifies China", description: "Qin Shi Huang conquered the warring states, unified China, standardized writing and currency, and began constructing the Great Wall.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Qin_dynasty" },
+    "2nd BC":  { title: "Rise of the Silk Road", description: "The Han Dynasty expanded westward, formalizing trade routes that connected East Asia with the Mediterranean, facilitating vast cultural and economic exchange.", category: "exploration", wikiLink: "https://en.wikipedia.org/wiki/Silk_Road" },
+    "1st BC":  { title: "Fall of the Roman Republic", description: "Decades of civil war culminated in Julius Caesar's dictatorship and assassination, leading to the rise of the Roman Empire under Augustus.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Fall_of_the_Roman_Republic" },
     "1st":  { title: "Roman Empire at its Zenith", description: "The Roman Empire dominated the Mediterranean world, establishing systems of law, engineering, and governance that would shape Western civilization for millennia.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Roman_Empire" },
     "2nd":  { title: "The Five Good Emperors", description: "Rome's golden age under Nerva, Trajan, Hadrian, Antoninus Pius, and Marcus Aurelius. The empire reached its maximum territorial extent.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Nerva%E2%80%93Antonine_dynasty" },
     "3rd":  { title: "Crisis of the Third Century", description: "The Roman Empire nearly collapsed under the combined pressures of invasion, civil war, plague, and economic depression.", category: "war", wikiLink: "https://en.wikipedia.org/wiki/Crisis_of_the_Third_Century" },
@@ -27,6 +38,10 @@ export const CURATED_EVENTS = {
 
   // ── Year-level events (sample: 20th century) ──────────────
   years: {
+    "-508": { title: "Establishment of Athenian Democracy", description: "Cleisthenes reformed the constitution of ancient Athens, establishing the system of direct democracy.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Athenian_democracy" },
+    "-323": { title: "Death of Alexander the Great", description: "Alexander the Great died in Babylon at age 32, leading to the division of his empire among his generals (the Diadochi).", category: "death", wikiLink: "https://en.wikipedia.org/wiki/Death_of_Alexander_the_Great" },
+    "-221": { title: "Qin Shi Huang Unifies China", description: "The state of Qin conquered the last of its rivals, establishing the Qin Empire and declaring Qin Shi Huang the first Emperor of China.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Qin_Shi_Huang" },
+    "-44": { title: "Assassination of Julius Caesar", description: "On the Ides of March, a group of Roman senators assassinated Julius Caesar, sparking the civil wars that ended the Roman Republic.", category: "death", wikiLink: "https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar" },
     1900: { title: "Boxer Rebellion", description: "Anti-foreign uprising in China, suppressed by an international coalition of eight nations.", category: "war", wikiLink: "https://en.wikipedia.org/wiki/Boxer_Rebellion" },
     1901: { title: "Death of Queen Victoria", description: "Queen Victoria died after 63 years on the British throne, ending the Victorian era.", category: "death", wikiLink: "https://en.wikipedia.org/wiki/Death_of_Queen_Victoria" },
     1903: { title: "First Powered Flight", description: "The Wright Brothers achieved the first sustained, controlled, powered heavier-than-air flight at Kitty Hawk, North Carolina.", category: "invention", wikiLink: "https://en.wikipedia.org/wiki/Wright_Flyer" },
@@ -64,6 +79,7 @@ export const CURATED_EVENTS = {
 
   // ── Month-level events (sample: 1969) ─────────────────────
   months: {
+    "-44-3":  { title: "Planning the Assassination", description: "A group of senators calling themselves the Liberatores secretly plot the assassination of Julius Caesar to restore the Roman Republic.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar" },
     "1969-1":  { title: "Nixon Inaugurated", description: "Richard Nixon was inaugurated as the 37th President of the United States on 20 January.", category: "political", wikiLink: "https://en.wikipedia.org/wiki/First_inauguration_of_Richard_Nixon" },
     "1969-2":  { title: "Boeing 747 First Flight", description: "The Boeing 747, the first wide-body commercial airliner, made its maiden flight on 9 February.", category: "invention", wikiLink: "https://en.wikipedia.org/wiki/Boeing_747" },
     "1969-3":  { title: "Concorde's First Flight", description: "The Anglo-French supersonic airliner Concorde made its first test flight on 2 March.", category: "invention", wikiLink: "https://en.wikipedia.org/wiki/Concorde" },
@@ -77,6 +93,7 @@ export const CURATED_EVENTS = {
 
   // ── Day-level events (sample: July 1969) ──────────────────
   days: {
+    "-44-3-15":  { title: "The Ides of March", description: "\"Et tu, Brute?\" Julius Caesar was assassinated by Roman senators led by Marcus Junius Brutus and Gaius Cassius Longinus.", category: "death", wikiLink: "https://en.wikipedia.org/wiki/Ides_of_March" },
     "1969-7-3":  { title: "Soviet N1 Rocket Explodes", description: "The massive Soviet N1 moon rocket exploded seconds after launch at Baikonur, one of the largest non-nuclear explosions in history.", category: "disaster", wikiLink: "https://en.wikipedia.org/wiki/N1_(rocket)" },
     "1969-7-14": { title: "Football War Begins", description: "A brief war erupted between El Salvador and Honduras, triggered partly by tensions surrounding FIFA World Cup qualifying matches.", category: "war", wikiLink: "https://en.wikipedia.org/wiki/Football_War" },
     "1969-7-16": { title: "Apollo 11 Launches", description: "Apollo 11 launched from Kennedy Space Center, carrying Armstrong, Aldrin, and Collins toward the Moon.", category: "exploration", wikiLink: "https://en.wikipedia.org/wiki/Apollo_11" },
@@ -98,11 +115,17 @@ export const MONTH_ABBR = [
 ];
 
 export function ordinal(n) {
+  const absN = Math.abs(n);
   const s = ['th', 'st', 'nd', 'rd'];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  const v = absN % 100;
+  const suffix = s[(v - 20) % 10] || s[v] || s[0];
+  return absN + suffix;
 }
 
 export function centuryLabel(num) {
-  return ordinal(num);
+  if (num < 0) {
+    return `${ordinal(num)} BC`;
+  }
+  return `${ordinal(num)} AD`;
 }
+

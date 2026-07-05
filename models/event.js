@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     year: DataTypes.INTEGER,
     category: DataTypes.STRING,
     description: DataTypes.TEXT,
-    wiki_link: DataTypes.STRING,
+    wiki_links: DataTypes.ARRAY(DataTypes.STRING),
     image_key: DataTypes.STRING,
     importance_score: DataTypes.DECIMAL
   }, {

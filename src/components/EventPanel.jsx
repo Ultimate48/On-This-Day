@@ -8,7 +8,11 @@ export default function EventPanel({ item, level }) {
     if (!item) return { title: 'Select an item', desc: 'Navigate the timeline above.' };
     
     let label = item.label;
-    if (level === 'century') label = `the ${label} century`;
+    if (level === 'century') {
+      label = item.value < 0 ? `the ${label} century BC` : `the ${label} century`;
+    } else if (level === 'year' && item.value < 0) {
+      label = `${Math.abs(item.value)} BC`;
+    }
     
     return {
       title: label,

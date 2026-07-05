@@ -9,27 +9,30 @@ const LEVELS = ['century', 'year', 'month', 'day'];
 
 function getItems(level, ctx) {
   switch (level) {
-    case 'century':
-      return Array.from({ length: 21 }, (_, i) => {
-        const num = i + 1;
-        const key = ordinal(num);
+    case 'century': {
+      const bcCenturies = Array.from({ length: 34 }, (_, i) => -(34 - i)); // -34 to -1
+      const adCenturies = Array.from({ length: 21 }, (_, i) => i + 1);     // 1 to 21
+      const allCenturies = [...bcCenturies, ...adCenturies];
+      return allCenturies.map(num => {
+        const key = num < 0 ? `${ordinal(num)} BC` : ordinal(num);
         const ev = CURATED_EVENTS.centuries[key];
         return {
-          label: key,
-          sublabel: 'century',
+          label: ordinal(num),
+          sublabel: num < 0 ? 'century BC' : 'century',
           value: num,
           event: ev || null,
         };
       });
+    }
 
     case 'year': {
       const centuryNum = ctx.century || 20;
-      const startYear = (centuryNum - 1) * 100;
+      const startYear = centuryNum < 0 ? centuryNum * 100 : (centuryNum - 1) * 100;
       return Array.from({ length: 100 }, (_, i) => {
         const year = startYear + i;
         const ev = CURATED_EVENTS.years[year];
         return {
-          label: String(year),
+          label: year < 0 ? String(Math.abs(year)) : String(year),
           sublabel: '',
           value: year,
           event: ev || null,
@@ -55,7 +58,9 @@ function getItems(level, ctx) {
     case 'day': {
       const year = ctx.year || 1969;
       const month = ctx.month || 7;
-      const daysInMonth = new Date(year, month, 0).getDate();
+      const absYear = Math.abs(year);
+      const safeYear = absYear > 99 ? absYear : (absYear % 4 === 0 ? 2000 : 2001);
+      const daysInMonth = new Date(safeYear, month, 0).getDate();
       return Array.from({ length: daysInMonth }, (_, i) => {
         const day = i + 1;
         const key = `${year}-${month}-${day}`;
@@ -86,7 +91,8 @@ export default function App() {
   useEffect(() => {
     const initialItems = getItems('century', {});
     setItems(initialItems);
-    setSelectedIndex(Math.floor(initialItems.length / 2));
+    const idx = initialItems.findIndex(it => it.value === 20);
+    setSelectedIndex(idx >= 0 ? idx : Math.floor(initialItems.length / 2));
   }, []);
 
   const changeLevel = (nextLevel, nextContext, startValue = null) => {
