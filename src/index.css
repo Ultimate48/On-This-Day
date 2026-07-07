@@ -108,3 +108,108 @@ body {
 .zoom-out-active {
   animation: zoomOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ── Multi-event count badge on timeline dot ── */
+.event-count-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-warm-white);
+  background-color: var(--color-gold-dark);
+  border-radius: 999px;
+  padding: 1.5px 3px;
+  letter-spacing: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Auxiliary event card ── */
+.aux-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-parchment-dark);
+  border-left-width: 3px;
+  border-radius: 12px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: default;
+}
+
+.aux-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 47, 30, 0.10);
+}
+
+.aux-card-pill {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-warm-white);
+  padding: 2px 6px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.aux-card-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  flex: 1;
+  overflow: hidden;
+}
+
+.aux-card-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.aux-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.aux-card-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ── Auxiliary events 2×3 grid ── */
+.aux-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .aux-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .aux-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

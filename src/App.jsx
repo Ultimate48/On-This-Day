@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CURATED_EVENTS, MONTH_ABBR, ordinal } from './data/events';
+import { MONTH_ABBR, ordinal, getEventsForSlot } from './data/events';
 import ContextBox from './components/ContextBox';
 import ZoomBreadcrumbs from './components/ZoomBreadcrumbs';
 import EventPanel from './components/EventPanel';
@@ -14,43 +14,45 @@ function getItems(level, ctx) {
       const adCenturies = Array.from({ length: 21 }, (_, i) => i + 1);     // 1 to 21
       const allCenturies = [...bcCenturies, ...adCenturies];
       return allCenturies.map(num => {
-        const key = num < 0 ? `${ordinal(num)} BC` : ordinal(num);
-        const ev = CURATED_EVENTS.centuries[key];
+        const events = getEventsForSlot('century', num, ctx);
         return {
-          label: ordinal(num),
+          label: ordinal(Math.abs(num)),
           sublabel: num < 0 ? 'century BC' : 'century',
           value: num,
-          event: ev || null,
+          events,
         };
       });
     }
 
     case 'year': {
       const centuryNum = ctx.century || 20;
-      const startYear = centuryNum < 0 ? centuryNum * 100 : (centuryNum - 1) * 100;
+      // BC centuries: century -1 = years -100..-1, century -2 = years -200..-101, etc.
+      // AD centuries: century 1 = years 1..100, century 20 = years 1901..2000
+      const startYear = centuryNum < 0
+        ? centuryNum * 100
+        : (centuryNum - 1) * 100 + 1;
       return Array.from({ length: 100 }, (_, i) => {
         const year = startYear + i;
-        const ev = CURATED_EVENTS.years[year];
+        const events = getEventsForSlot('year', year, { ...ctx, year });
         return {
           label: year < 0 ? String(Math.abs(year)) : String(year),
-          sublabel: '',
+          sublabel: year < 0 ? 'BC' : '',
           value: year,
-          event: ev || null,
+          events,
         };
       });
     }
 
+
     case 'month': {
-      const year = ctx.year || 1969;
       return Array.from({ length: 12 }, (_, i) => {
         const month = i + 1;
-        const key = `${year}-${month}`;
-        const ev = CURATED_EVENTS.months[key];
+        const events = getEventsForSlot('month', month, ctx);
         return {
           label: MONTH_ABBR[month],
           sublabel: '',
           value: month,
-          event: ev || null,
+          events,
         };
       });
     }
@@ -63,13 +65,12 @@ function getItems(level, ctx) {
       const daysInMonth = new Date(safeYear, month, 0).getDate();
       return Array.from({ length: daysInMonth }, (_, i) => {
         const day = i + 1;
-        const key = `${year}-${month}-${day}`;
-        const ev = CURATED_EVENTS.days[key];
+        const events = getEventsForSlot('day', day, ctx);
         return {
           label: String(day),
           sublabel: '',
           value: day,
-          event: ev || null,
+          events,
         };
       });
     }
@@ -87,7 +88,7 @@ export default function App() {
   const [zoomAnim, setZoomAnim] = useState('');
   const [showHint, setShowHint] = useState(true);
 
-  // Initialize century view
+  // Initialize century view centered on 20th century
   useEffect(() => {
     const initialItems = getItems('century', {});
     setItems(initialItems);
@@ -98,8 +99,6 @@ export default function App() {
   const changeLevel = (nextLevel, nextContext, startValue = null) => {
     const isZoomIn = LEVELS.indexOf(nextLevel) > LEVELS.indexOf(level);
     setZoomAnim(isZoomIn ? 'zoom-in-active' : 'zoom-out-active');
-    
-    // Clear animation class after transition is done (500ms match css)
     setTimeout(() => setZoomAnim(''), 500);
 
     const nextItems = getItems(nextLevel, nextContext);
@@ -144,7 +143,6 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Fade hint on first interaction
       if (showHint) setShowHint(false);
 
       switch (e.key) {
@@ -180,12 +178,12 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-screen w-screen bg-parchment relative overflow-hidden">
-      
+
       {/* Context box at top-left */}
-      <ContextBox 
-        level={level} 
-        context={context} 
-        onBack={handleBack} 
+      <ContextBox
+        level={level}
+        context={context}
+        onBack={handleBack}
       />
 
       {/* Keyboard hints at top-right */}
@@ -204,10 +202,10 @@ export default function App() {
       )}
 
       {/* Flex container holding layout */}
-      <div className="flex-1 flex flex-col justify-between pt-4 pb-4">
-        
-        {/* Zoom animating wrapper for Timeline */}
-        <div className={`w-full ${zoomAnim}`}>
+      <div className="flex-1 flex flex-col min-h-0 pt-4">
+
+        {/* Zoom animating wrapper for Timeline — fixed height, never scrolls */}
+        <div className={`w-full shrink-0 ${zoomAnim}`}>
           <Timeline
             items={items}
             selectedIndex={selectedIndex}
@@ -218,11 +216,12 @@ export default function App() {
         </div>
 
         {/* Selected Event Display Panel */}
-        <EventPanel 
-          item={items[selectedIndex]} 
-          level={level} 
+        <EventPanel
+          events={items[selectedIndex]?.events || []}
+          level={level}
+          item={items[selectedIndex]}
         />
-        
+
       </div>
 
       {/* Zoom indicator breadcrumbs bottom-right */}

@@ -164,16 +164,18 @@ export default function Timeline({
           const dist = Math.abs(i - selectedIndex);
           const isSelected = dist === 0;
 
-          // Distance-based opacity + scale (no re-render jitter — purely visual)
+          // Distance-based opacity + scale
           let opacity = 1;
           let scale = 1;
           if (dist >= 7) { opacity = 0.22; scale = 0.82; }
           else if (dist >= 4) { opacity = 0.55; scale = 0.90; }
           else if (dist >= 2) { opacity = 0.80; scale = 0.95; }
 
-          const hasEvent = !!item.event;
+          const heroEvent = item.events?.[0] || null;
+          const hasEvent = !!heroEvent;
+          const extraCount = (item.events?.length || 0) - 1;
           const dotColor = hasEvent
-            ? `var(--cat-${item.event.category})`
+            ? `var(--cat-${heroEvent.category})`
             : 'var(--color-gold)';
 
           return (
@@ -199,14 +201,15 @@ export default function Timeline({
               />
 
               {/* Event dot */}
-              {hasEvent && (
-                <span
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${isSelected ? 'scale-110 opacity-100' : 'opacity-60'
-                    }`}
-                  style={{ backgroundColor: dotColor }}
-                />
-              )}
-              {!hasEvent && <span className="w-2 h-2" />}
+              <div className="relative flex items-center justify-center w-5 h-5">
+                {hasEvent && (
+                  <span
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${isSelected ? 'scale-110 opacity-100' : 'opacity-60'}`}
+                    style={{ backgroundColor: dotColor }}
+                  />
+                )}
+                {!hasEvent && <span className="w-2 h-2" />}
+              </div>
 
               {/* Main label */}
               <span
